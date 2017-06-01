@@ -15,6 +15,7 @@
 		A733B51D1EE03787009470DE /* SubNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733B51C1EE03787009470DE /* SubNavigationBarViewController.swift */; };
 		A733B5211EE03F2D009470DE /* SubNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733B5201EE03F2D009470DE /* SubNavBarView.swift */; };
 		A733B5231EE03F80009470DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733B5221EE03F80009470DE /* Constants.swift */; };
+		A7E74E1C1EE076DA00E704DC /* MainNavigatoinBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E74E1B1EE076DA00E704DC /* MainNavigatoinBarView.swift */; };
 		E1F234CCA1AC38AEC53861B4 /* Pods_Test_task.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD37611E09EA196D281F8F9B /* Pods_Test_task.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		A733B51C1EE03787009470DE /* SubNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubNavigationBarViewController.swift; sourceTree = "<group>"; };
 		A733B5201EE03F2D009470DE /* SubNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubNavBarView.swift; sourceTree = "<group>"; };
 		A733B5221EE03F80009470DE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A7E74E1B1EE076DA00E704DC /* MainNavigatoinBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigatoinBarView.swift; sourceTree = "<group>"; };
 		BD37611E09EA196D281F8F9B /* Pods_Test_task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF255E57CC80A959282D4CA1 /* Pods-Test_task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test_task.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Test_task/Pods-Test_task.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 				A733B50A1EE03108009470DE /* AppDelegate.swift */,
 				A733B50C1EE03108009470DE /* ViewController.swift */,
 				A733B5201EE03F2D009470DE /* SubNavBarView.swift */,
+				A7E74E1B1EE076DA00E704DC /* MainNavigatoinBarView.swift */,
 				A733B50E1EE03108009470DE /* Main.storyboard */,
 				A733B5111EE03108009470DE /* Assets.xcassets */,
 				A733B5131EE03108009470DE /* LaunchScreen.storyboard */,
@@ -224,6 +227,7 @@
 				A733B51D1EE03787009470DE /* SubNavigationBarViewController.swift in Sources */,
 				A733B5211EE03F2D009470DE /* SubNavBarView.swift in Sources */,
 				A733B50D1EE03108009470DE /* ViewController.swift in Sources */,
+				A7E74E1C1EE076DA00E704DC /* MainNavigatoinBarView.swift in Sources */,
 				A733B50B1EE03108009470DE /* AppDelegate.swift in Sources */,
 				A733B5231EE03F80009470DE /* Constants.swift in Sources */,
 			);

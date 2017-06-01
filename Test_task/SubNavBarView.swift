@@ -57,6 +57,32 @@ class SubNavBarView: UIView {
     
     func titleButtonPressed(sender: UIButton) {
         print("Button \(sender.tag)")
+        
+        switch sender.tag {
+        case 0:
+            highlightText(sender: sender)
+            //put logic here
+        case 1:
+            highlightText(sender: sender)
+            //put logic here
+        case 2:
+            highlightText(sender: sender)
+            //put logic here
+
+            
+        default:
+            break
+        }
+    }
+    
+    func highlightText(sender: UIButton) {
+        for button in self.subviews {
+            if button.isKind(of: UIButton.self) {
+                let b = button as! UIButton
+                b.titleLabel?.font = UIFont(name: "Copperplate-Light", size: 16)
+            }
+        }
+        sender.titleLabel?.font = UIFont(name: "Copperplate-Bold", size: 16)
     }
     
     func configureLayout() {
