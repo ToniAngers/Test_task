@@ -15,7 +15,7 @@ class MainNavigatoinBarView: UIView {
     var mainBalanceLable:UILabel!
     
     init(withNavBar navbar: UINavigationBar) {
-        super.init(frame: CGRect(x:0, y: 20, width: UIScreen.main.bounds.width, height: navbar.bounds.height*2))
+        super.init(frame: CGRect(x:0, y: 30, width: UIScreen.main.bounds.width, height: navbar.bounds.height*2))
         self.backgroundColor = UIColor.white
         configureView()
         configureLayout()
@@ -59,7 +59,7 @@ class MainNavigatoinBarView: UIView {
         make.left.equalToSuperview().offset(30)
         make.right.equalToSuperview().offset(-30)
         make.top.equalTo(mainBalanceLable.snp.bottom)
-        make.bottom.equalToSuperview().offset(-20)
+        make.bottom.equalToSuperview().offset(-30)
             
         }
         

@@ -73,10 +73,10 @@ class ViewController:   UIViewController,
     
     func configureView() {
         
-        let subView = SubNavBarView()
-        subView.delegate = self
-        subView.frame = CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: 40)
-        self.view.addSubview(subView)
+        subNavigationView = SubNavBarView()
+        subNavigationView.delegate = self
+        subNavigationView.frame = CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: 40)
+        self.view.addSubview(subNavigationView)
         
         removeSeparateView()
         addViewToNavigationBar()
@@ -140,7 +140,9 @@ class ViewController:   UIViewController,
         let page = Int(offsetX/width)
 
         print("FINISHED!!! page \(page)")
+        self.subNavigationView.highlightItem(at: page)
     }
+    
 
     
 //MARK: PageButtonProtocol

@@ -51,7 +51,7 @@ class SubNavBarView: UIView {
         leftButton.addTarget(self, action: #selector(titleButtonPressed(sender:)), for: .touchUpInside)
         
         centerButton = UIButton()
-        centerButton.setTitle("   Incoming", for: .normal)
+        centerButton.setTitle("Incoming", for: .normal)
         centerButton.setTitleColor(UIColor.black, for: .normal)
         centerButton.titleLabel?.textAlignment = .center
         centerButton.titleLabel!.font =  UIFont(name: "Copperplate-Light", size: 16)
@@ -74,8 +74,6 @@ class SubNavBarView: UIView {
     }
     
     
-    
-    
     func configureLayout() {
         
         indicator.snp.makeConstraints { (make) in
@@ -86,34 +84,36 @@ class SubNavBarView: UIView {
         }
         
         leftButton.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(5)
+            make.left.equalTo(self).offset(10)
             make.top.equalTo(self)
             make.bottom.equalTo(self)
+            make.width.equalTo(centerButton.snp.width)
            
         }
         
         centerButton.snp.makeConstraints { (make) in
                 make.top.equalTo(self)
-                make.centerX.equalTo(self)
-                make.left.equalTo(leftButton.snp.right)
+//                make.centerX.equalTo(self)
+                make.left.equalTo(leftButton.snp.right).offset(5)
                 make.right.equalTo(rightButton.snp.left)
                 make.bottom.equalTo(self)
+            make.width.equalTo(leftButton.snp.width)
+
         }
         
         rightButton.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-5)
+            make.right.equalTo(self).offset(10)
             make.top.equalTo(self)
             make.bottom.equalTo(self)
+            make.width.equalTo(centerButton.snp.width)
 
         }
-    
     }
     
 //MARK: Actions
     func titleButtonPressed(sender: UIButton) {
         moveIndicatorTo(button:sender)
         self.delegate?.subNavBarView(self, didSelectButton: sender.tag)
-        
     }
 
     
@@ -137,9 +137,20 @@ class SubNavBarView: UIView {
         self.addSubview(indicator)
     }
     
-   
+    func highlightItem(at index: NSInteger) {
+        
+        for v in self.subviews {
+            if v.isKind(of: UIButton.self) {
+                let button = v as! UIButton
+                    button.titleLabel?.font = UIFont(name: "Copperplate-Light", size: 16)
+                if button.tag == index {
+                    button.titleLabel?.font = UIFont(name: "Copperplate-Bold", size: 16)
+                }
+            }
+        }
+    }
     
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
