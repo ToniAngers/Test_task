@@ -11,6 +11,8 @@ import SnapKit
 
 class MainNavigatoinBarView: UIView {
     
+    private var sartBalance = 401
+    
     private var accountBalanceLable:UILabel!
     private var mainBalanceLable:UILabel!
     
@@ -19,6 +21,7 @@ class MainNavigatoinBarView: UIView {
         self.backgroundColor = UIColor.white
         configureView()
         configureLayout()
+        runTimer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,12 +30,11 @@ class MainNavigatoinBarView: UIView {
         
     }
     
-    
     func configureView() {
         mainBalanceLable = UILabel()
         mainBalanceLable.textColor = UIColor.black
         mainBalanceLable.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 30)
-        mainBalanceLable.text = "15.202,45 $"
+        mainBalanceLable.text = "15,401 $"
         mainBalanceLable.textAlignment = .center
         mainBalanceLable.backgroundColor = UIColor.clear
         self.addSubview(mainBalanceLable)
@@ -63,6 +65,13 @@ class MainNavigatoinBarView: UIView {
             
         }
         
+    }
+    
+    func runTimer() {
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {timer in
+            self.sartBalance += 1
+            self.mainBalanceLable.text = "15,\(self.sartBalance) $"
+        })
     }
     
 
