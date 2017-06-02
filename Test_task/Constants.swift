@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-enum ColorType {
-    
-    case Black
-    case White
-    case Green
-}
+public let mainBackGroundColor: UIColor = UIColor(red: 242/255, green: 246/255, blue: 247/255, alpha: 1.0)
+
+//Fonts
+

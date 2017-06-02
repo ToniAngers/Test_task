@@ -16,6 +16,7 @@ class MainTableViewController: UITableViewController {
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "mainCell")
         tableView.contentInset = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +52,8 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath)
-        cell.textLabel?.text = "hello"
+        
+        
         return cell
     }
  

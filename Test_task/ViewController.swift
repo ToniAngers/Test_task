@@ -71,7 +71,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func addViewToNavigationBar () {
         let navBar = navigationController?.navigationBar
         let balanceView = MainNavigatoinBarView(withNavBar:navBar!)
-        navigationItem.titleView = balanceView
+        navBar?.addSubview(balanceView)
         
     }
     

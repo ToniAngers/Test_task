@@ -108,31 +108,9 @@ class SubNavBarView: UIView {
     
 //MARK: Actions
     func titleButtonPressed(sender: UIButton) {
-        print("Button \(sender.tag)")
-        
-        switch sender.tag {
-        case 0:
-            highlightText(sender: sender)
-            moveIndicatorTo(button:sender)
-        case 1:
-            highlightText(sender: sender)
-            moveIndicatorTo(button:sender)
-        case 2:
-            highlightText(sender: sender)
-            moveIndicatorTo(button:sender)
-            
-        default:
-            break
-        }
-    }
- //MARK: help func
-    
-    func creatingAnIndicator() {
-        indicator = UIView()
-        indicator.layer.cornerRadius = 1
-        indicator.layer.masksToBounds = true
-        indicator.backgroundColor = UIColor.black
-        self.addSubview(indicator)
+
+        moveIndicatorTo(button:sender)
+        //highlightText(sender: sender)
     }
     
     func highlightText(sender: UIButton) {
@@ -149,15 +127,24 @@ class SubNavBarView: UIView {
         let newPoint = button.center.x
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
-           self.indicator.center.x = newPoint
-            
+            self.indicator.center.x = newPoint
         }, completion:{ finished  in
-            print("df")
             
         })
         
-       
+        
     }
+ //MARK: help func
+    
+    func creatingAnIndicator() {
+        indicator = UIView()
+        indicator.layer.cornerRadius = 1
+        indicator.layer.masksToBounds = true
+        indicator.backgroundColor = UIColor.black
+        self.addSubview(indicator)
+    }
+    
+   
     
 
     required init?(coder aDecoder: NSCoder) {

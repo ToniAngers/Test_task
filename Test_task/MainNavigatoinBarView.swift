@@ -10,11 +10,13 @@ import UIKit
 import SnapKit
 
 class MainNavigatoinBarView: UIView {
-
+    
+    var accountBalanceLable:UILabel!
+    var mainBalanceLable:UILabel!
     
     init(withNavBar navbar: UINavigationBar) {
-        super.init(frame: CGRect(x:0, y: 0, width: UIScreen.main.bounds.width, height: navbar.bounds.height))
-        self.backgroundColor = UIColor.yellow
+        super.init(frame: CGRect(x:0, y: 20, width: UIScreen.main.bounds.width, height: navbar.bounds.height*2))
+        self.backgroundColor = UIColor.white
         configureView()
         configureLayout()
     }
@@ -27,12 +29,39 @@ class MainNavigatoinBarView: UIView {
     
     
     func configureView() {
+        mainBalanceLable = UILabel()
+        mainBalanceLable.textColor = UIColor.black
+        mainBalanceLable.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 30)
+        mainBalanceLable.text = "15.202,45 $"
+        mainBalanceLable.textAlignment = .center
+        mainBalanceLable.backgroundColor = UIColor.clear
+        self.addSubview(mainBalanceLable)
         
-        
+        accountBalanceLable = UILabel()
+        accountBalanceLable.textColor = UIColor.black
+        accountBalanceLable.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 18)
+        accountBalanceLable.text = "Account balance"
+        accountBalanceLable.textAlignment = .center
+        accountBalanceLable.backgroundColor = UIColor.clear
+        self.addSubview(accountBalanceLable)
     }
     
     func configureLayout() {
-       
+       mainBalanceLable.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().offset(30)
+        make.right.equalToSuperview().offset(-30)
+        make.top.equalToSuperview()
+        make.bottom.equalTo(accountBalanceLable.snp.top)
+
+        }
+        
+       accountBalanceLable.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().offset(30)
+        make.right.equalToSuperview().offset(-30)
+        make.top.equalTo(mainBalanceLable.snp.bottom)
+        make.bottom.equalToSuperview().offset(-20)
+            
+        }
         
     }
     
