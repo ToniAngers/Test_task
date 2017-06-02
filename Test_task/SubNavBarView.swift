@@ -9,24 +9,28 @@
 import UIKit
 import SnapKit
 
-
-enum indicatorPosition {
-    case first
-    case center
-    case right
+protocol PageButtonProtocol {
+    
+    func subNavBarView(_ subNavBar: SubNavBarView, didSelectButton: NSInteger)
 }
 
+
 class SubNavBarView: UIView {
-        
+    
+    var delegate: PageButtonProtocol?
+    
     //Buttons
     var leftButton: UIButton!
     var centerButton: UIButton!
     var rightButton: UIButton!
     
+    var selectedButton = UIButton()
+    
     var indicator:UIView!
     
     var indicatorPositionX: Constraint?
     var lastContentOffset: CGFloat = 0
+    
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
@@ -45,7 +49,6 @@ class SubNavBarView: UIView {
         leftButton.titleLabel!.font =  UIFont(name: "Copperplate-Light", size: 16)
         leftButton.tag = 0
         leftButton.addTarget(self, action: #selector(titleButtonPressed(sender:)), for: .touchUpInside)
-        
         
         centerButton = UIButton()
         centerButton.setTitle("   Incoming", for: .normal)
@@ -77,9 +80,9 @@ class SubNavBarView: UIView {
         
         indicator.snp.makeConstraints { (make) in
             indicatorPositionX = make.centerX.equalTo(leftButton.snp.centerX).constraint
-            make.width.equalTo(50)
+            make.width.equalTo(35)
             make.height.equalTo(2)
-            make.bottom.equalTo(self).offset(1)
+            make.bottom.equalTo(self)
         }
         
         leftButton.snp.makeConstraints { (make) in
@@ -108,20 +111,11 @@ class SubNavBarView: UIView {
     
 //MARK: Actions
     func titleButtonPressed(sender: UIButton) {
-
         moveIndicatorTo(button:sender)
-        //highlightText(sender: sender)
+        self.delegate?.subNavBarView(self, didSelectButton: sender.tag)
+        
     }
-    
-    func highlightText(sender: UIButton) {
-        for button in self.subviews {
-            if button.isKind(of: UIButton.self) {
-                let b = button as! UIButton
-                b.titleLabel?.font = UIFont(name: "Copperplate-Light", size: 16)
-            }
-        }
-        sender.titleLabel?.font = UIFont(name: "Copperplate-Bold", size: 16)
-    }
+
     
     func moveIndicatorTo(button: UIButton) {
         let newPoint = button.center.x
@@ -131,7 +125,6 @@ class SubNavBarView: UIView {
         }, completion:{ finished  in
             
         })
-        
         
     }
  //MARK: help func

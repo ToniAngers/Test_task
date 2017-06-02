@@ -1,5 +1,5 @@
 //
-//  IncomingViewController.swift
+//  OutgoingViewController.swift
 //  Test_task
 //
 //  Created by Anton Voropaev on 02.06.17.
@@ -7,43 +7,43 @@
 //
 
 import UIKit
-import SnapKit
 
-class IncomingViewController: UIViewController {
-    
-    var mainLable:UILabel!
+class OutgoingViewController: UIViewController {
 
+    var mainLable: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.yellow
         
         configureView()
         setupLayout()
-
+        
     }
     
+    
+    
     func configureView() {
+        
+        self.view.backgroundColor = UIColor.orange
         mainLable = UILabel()
         mainLable.textColor = UIColor.gray
         mainLable.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 46)
-        mainLable.text = "Incoming VC"
+        mainLable.text = "Outgoing VC"
         mainLable.textAlignment = .center
         mainLable.numberOfLines = 0
         mainLable.sizeToFit()
         mainLable.backgroundColor = UIColor.clear
         self.view.addSubview(mainLable)
     }
-
-    func setupLayout() {
     
+    func setupLayout() {
+        
         mainLable.snp.makeConstraints { (make) in
             make.top.bottom.left.right.equalTo(self.view)
         }
-        
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    
 }

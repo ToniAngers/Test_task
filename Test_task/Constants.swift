@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 public let mainBackGroundColor: UIColor = UIColor(red: 242/255, green: 246/255, blue: 247/255, alpha: 1.0)
+public let greenTextColor = UIColor(red: 26/255, green: 188/255, blue: 156/255, alpha: 1)
 
 //Fonts
 

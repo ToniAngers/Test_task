@@ -11,7 +11,11 @@ import SnapKit
 
 let navBarHeight:CGFloat = 60;
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController:   UIViewController,
+                        UICollectionViewDelegateFlowLayout,
+                        UICollectionViewDelegate,
+                        UICollectionViewDataSource,
+                        PageButtonProtocol { //handling button pressed under navBar
     
     lazy var collection: UICollectionView = {
         
@@ -20,7 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
         
-        let frame = CGRect(x: 0, y: 81, width: self.view.frame.width, height: self.view.frame.height-120)
+        let frame = CGRect(x: 0, y: 80, width: self.view.frame.width, height: self.view.frame.height-120)
         
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         collectionView.dataSource = self
@@ -40,14 +44,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var subNavigationView:SubNavBarView!
     
     
-//MARK: VC
+//MARK: VC lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let mainVC = MainTableViewController()
         let incomingVC = IncomingViewController()
+        let outgoingVC = OutgoingViewController()
         
-        controllersStack = [mainVC, incomingVC]
+        controllersStack = [mainVC, incomingVC, outgoingVC]
         
         self.view.backgroundColor = UIColor.gray
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -56,11 +61,20 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         configureView()
         collection.reloadData()
     }
-
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let bounds = self.navigationController!.navigationBar.bounds
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + navBarHeight)
+    }
+
+//MARK: Base setup
     
     func configureView() {
+        
         let subView = SubNavBarView()
+        subView.delegate = self
         subView.frame = CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: 40)
         self.view.addSubview(subView)
         
@@ -69,42 +83,33 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func addViewToNavigationBar () {
+        
         let navBar = navigationController?.navigationBar
         let balanceView = MainNavigatoinBarView(withNavBar:navBar!)
         navBar?.addSubview(balanceView)
-        
     }
     
     func removeSeparateView() {
         
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController!.navigationBar.clipsToBounds = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.clipsToBounds = false
     }
 
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let bounds = self.navigationController!.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + navBarHeight)
-        
-    }
-    
-
-    
-    //MARK: Collecction delegate&datasource
+//MARK: Collection delegate&datasource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         if self.controllersStack == nil {
             return 0
         }
         return self.controllersStack!.count
     }
     
-    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let subArray = cell.subviews
         
         for item in subArray {
@@ -117,16 +122,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         cell.addSubview(currentView!)
         
         currentView?.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(cell)
-            make.top.equalTo(cell)
-            make.height.width.equalTo(300)
+            make.left.right.bottom.top.equalTo(cell)
         }
         
         return cell
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: self.view.frame.width, height: self.view.frame.height)
     }
     
@@ -135,18 +138,21 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let offsetX = collectionView.contentOffset.x
         let width = collectionView.bounds.width
         let page = Int(offsetX/width)
-        
+
         print("FINISHED!!! page \(page)")
-    
     }
 
     
+//MARK: PageButtonProtocol
+    
+    func subNavBarView(_ subNavBar: SubNavBarView, didSelectButton: NSInteger) {
+        
+        let path = NSIndexPath(item: didSelectButton, section: 0)
+        collection.scrollToItem(at: path as IndexPath, at: .centeredHorizontally, animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
 }
 
