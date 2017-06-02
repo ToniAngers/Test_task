@@ -25,7 +25,7 @@ class IncomingViewController: UIViewController {
     func configureView() {
         mainLable = UILabel()
         mainLable.textColor = UIColor.gray
-        mainLable.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 46)
+        mainLable.font = FONT_VC_46
         mainLable.text = "Incoming VC"
         mainLable.textAlignment = .center
         mainLable.numberOfLines = 0

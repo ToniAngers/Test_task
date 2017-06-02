@@ -20,17 +20,14 @@ class SubNavBarView: UIView {
     var delegate: PageButtonProtocol?
     
     //Buttons
-    var leftButton: UIButton!
-    var centerButton: UIButton!
-    var rightButton: UIButton!
-    
-    var selectedButton = UIButton()
+    private var leftButton: UIButton!
+    private var centerButton: UIButton!
+    private var rightButton: UIButton!
+    private var selectedButton = UIButton()
+    private var indicatorPositionX: Constraint?
+    private var lastContentOffset: CGFloat = 0
     
     var indicator:UIView!
-    
-    var indicatorPositionX: Constraint?
-    var lastContentOffset: CGFloat = 0
-    
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
@@ -46,7 +43,7 @@ class SubNavBarView: UIView {
         leftButton = UIButton()
         leftButton.setTitle("Net cash flow", for: .normal)
         leftButton.setTitleColor(UIColor.black, for: .normal)
-        leftButton.titleLabel!.font =  UIFont(name: "Copperplate-Light", size: 16)
+        leftButton.titleLabel!.font =  FONT_LIGHT_16
         leftButton.tag = 0
         leftButton.addTarget(self, action: #selector(titleButtonPressed(sender:)), for: .touchUpInside)
         
@@ -54,7 +51,7 @@ class SubNavBarView: UIView {
         centerButton.setTitle("Incoming", for: .normal)
         centerButton.setTitleColor(UIColor.black, for: .normal)
         centerButton.titleLabel?.textAlignment = .center
-        centerButton.titleLabel!.font =  UIFont(name: "Copperplate-Light", size: 16)
+        centerButton.titleLabel!.font =  FONT_LIGHT_16
         centerButton.tag = 1
         centerButton.addTarget(self, action: #selector(titleButtonPressed(sender:)), for: .touchUpInside)
 
@@ -63,7 +60,7 @@ class SubNavBarView: UIView {
         rightButton = UIButton()
         rightButton.setTitle("Outgoing", for: .normal)
         rightButton.setTitleColor(UIColor.black, for: .normal)
-        rightButton.titleLabel!.font =  UIFont(name: "Copperplate-Light", size: 16)
+        rightButton.titleLabel!.font =  FONT_LIGHT_16
         rightButton.tag = 2
         rightButton.addTarget(self, action: #selector(titleButtonPressed(sender:)), for: .touchUpInside)
 
@@ -142,9 +139,9 @@ class SubNavBarView: UIView {
         for v in self.subviews {
             if v.isKind(of: UIButton.self) {
                 let button = v as! UIButton
-                    button.titleLabel?.font = UIFont(name: "Copperplate-Light", size: 16)
+                    button.titleLabel?.font = FONT_LIGHT_16
                 if button.tag == index {
-                    button.titleLabel?.font = UIFont(name: "Copperplate-Bold", size: 16)
+                    button.titleLabel?.font = FONT_BOLD_16
                 }
             }
         }

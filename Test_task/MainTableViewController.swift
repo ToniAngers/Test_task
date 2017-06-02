@@ -9,12 +9,14 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-
+    
+private var cellIdentifier = "mainCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 242/255, green: 246/255, blue: 247/255, alpha: 1.0)
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "mainCell")
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.contentInset = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
     
@@ -53,7 +55,7 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         return cell
     }

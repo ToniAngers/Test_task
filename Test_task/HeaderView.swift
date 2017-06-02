@@ -12,15 +12,15 @@ import SnapKit
 
 class HeaderView: UIView {
     
+    private var headerLeftLable:UILabel!
+    private var headerRightLable:UILabel!
+    
     var headerLeftText: String!
     var headerRightText: String!
     
-    var headerLeftLable:UILabel!
-    var headerRightLable:UILabel!
-    
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
-        self.backgroundColor = mainBackGroundColor
+        self.backgroundColor = BG_COLOR
         configureView()
         setupLayout()
         

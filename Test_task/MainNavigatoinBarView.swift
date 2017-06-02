@@ -11,8 +11,8 @@ import SnapKit
 
 class MainNavigatoinBarView: UIView {
     
-    var accountBalanceLable:UILabel!
-    var mainBalanceLable:UILabel!
+    private var accountBalanceLable:UILabel!
+    private var mainBalanceLable:UILabel!
     
     init(withNavBar navbar: UINavigationBar) {
         super.init(frame: CGRect(x:0, y: 30, width: UIScreen.main.bounds.width, height: navbar.bounds.height*2))

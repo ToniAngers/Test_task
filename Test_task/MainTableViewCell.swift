@@ -11,11 +11,11 @@ import SnapKit
 
 class MainTableViewCell: UITableViewCell {
     
-    var mainView: UIView!
-    var numberLable: UILabel!
-    var nameLable: UILabel!
-    var balanceLable: UILabel!
-    var disclousureButton:UIButton!
+    private var mainView: UIView!
+    private var numberLable: UILabel!
+    private var nameLable: UILabel!
+    private var balanceLable: UILabel!
+    private var disclousureButton:UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +23,7 @@ class MainTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-         self.backgroundColor = mainBackGroundColor
+         self.backgroundColor = BG_COLOR
          self.selectionStyle = .none
          configureViewElements()
          configureLayouts()
@@ -49,21 +49,21 @@ class MainTableViewCell: UITableViewCell {
         //setup lables
         numberLable = UILabel()
         numberLable.textColor = UIColor.black
-        numberLable.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 13)
+        numberLable.font = FONT_CELL_BOLD_13
         numberLable.contentMode = .bottomLeft
         numberLable.text = "#3042453"
         numberLable.backgroundColor = UIColor.clear
         
         nameLable = UILabel()
         nameLable.textColor = UIColor.black
-        nameLable.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 13)
+        nameLable.font = FONT_CELL_LIGHT_13
         nameLable.contentMode = .bottomLeft
         nameLable.text = "Jeudan A/S"
         nameLable.backgroundColor = UIColor.clear
         
         balanceLable = UILabel()
-        balanceLable.textColor = greenTextColor
-        balanceLable.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 13)
+        balanceLable.textColor = TEXT_GREEN_COLOR
+        balanceLable.font = FONT_CELL_BOLD_13
         balanceLable.contentMode = .bottomLeft
         balanceLable.text = "+546$"
         balanceLable.backgroundColor = UIColor.clear

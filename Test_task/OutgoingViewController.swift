@@ -26,7 +26,7 @@ class OutgoingViewController: UIViewController {
         self.view.backgroundColor = UIColor.orange
         mainLable = UILabel()
         mainLable.textColor = UIColor.gray
-        mainLable.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 46)
+        mainLable.font = FONT_VC_46
         mainLable.text = "Outgoing VC"
         mainLable.textAlignment = .center
         mainLable.numberOfLines = 0
